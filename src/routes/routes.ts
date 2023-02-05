@@ -11,11 +11,11 @@ export const routes = [
     {
         path: "/",
         page: Home,
-        authorized: true,
+        authorized: false,
     },
     {
         path: "/about",
         page: About,
-        authorized: true,
+        authorized: false,
     },
 ];

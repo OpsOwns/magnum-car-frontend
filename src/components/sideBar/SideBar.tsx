@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemButton, ListItemText, makeStyles, styled, Toolbar } from '@mui/material'
+import { Drawer, List, ListItem, ListItemButton, ListItemText, styled, Toolbar } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { sideItems } from './SideItems';
@@ -10,35 +10,23 @@ const Sidebar: React.FC = () => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
 
-
     const StyledListText = styled(ListItemText)({
         textAlign: 'center',
         color: 'white'
     });
 
     const CustomListButton = styled(ListItemButton)({
-        "&$selected": {
-            backgroundColor: "red",
-            color: "blue",
-            "& .MuiListItemIcon-root": {
-                color: "blue"
-            }
-        },
-        "&$selected:hover": {
-            backgroundColor: "purple",
-            color: "white",
-            "& .MuiListItemIcon-root": {
-                color: "white"
-            }
-        },
-        "&:hover": {
-            backgroundColor: "blue",
-            color: "white",
-            "& .MuiListItemIcon-root": {
-                color: "white"
-            }
+        "&.Mui-selected": {
+            backgroundColor: "#2e8b57!important"
         }
     });
+
+
+    const handleListItemClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, path: string, index: number) => {
+        event.preventDefault();
+        navigate(path);
+        setSelectedIndex(index);
+    }
 
     return (
         <Drawer
@@ -57,12 +45,9 @@ const Sidebar: React.FC = () => {
         >
             <Toolbar />
             <List>
-                {sideItems.map(item =>
-                    <ListItem key={item.id} >
-                        <CustomListButton onClick={() => {
-                            navigate(item.path);
-                            setSelectedIndex(item.id)
-                        }} selected={selectedIndex === item.id}>
+                {sideItems.map((item, index) =>
+                    <ListItem key={item.id}>
+                        <CustomListButton selected={index === selectedIndex} onClick={(event) => handleListItemClick(event, item.path, index)}>
                             <StyledListText primary={item.text} />
                         </CustomListButton>
                     </ListItem>

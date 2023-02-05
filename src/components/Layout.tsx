@@ -12,7 +12,7 @@ const Layout: React.FC<Props> = (props: Props) => {
     return <>
         <Grid container>
             <Sidebar />
-            <Navbar />
+            <Navbar Name='Ops' />
             <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
                 <Toolbar />
                 {props.children}

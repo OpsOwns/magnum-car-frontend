@@ -1,9 +1,6 @@
 import { AppBar, Toolbar, Typography } from '@mui/material';
 
 const Footer = () => {
-
-    var date = new Date();
-
     return (
         <AppBar color="primary" elevation={23} sx={{
             top: "auto",
@@ -16,7 +13,7 @@ const Footer = () => {
                 display: "flex",
                 justifyContent: "center",
             }}>
-                <Typography variant="h6" align="center">Created By Ops {date.getFullYear()}</Typography>
+                <Typography variant="h6" align="center">Copyright © 2022 Ops</Typography>
             </Toolbar>
         </AppBar>
 

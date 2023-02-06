@@ -2,7 +2,7 @@ import { Box, Grid, Toolbar } from '@mui/material'
 import React from 'react'
 import Footer from './Footer'
 import Navbar from './Navbar'
-import Sidebar from './sideBar/SideBar'
+import Sidebar from './SideBar'
 
 type Props = {
     children: React.ReactNode

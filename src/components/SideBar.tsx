@@ -1,10 +1,10 @@
-import { Drawer, List, ListItemButton, ListItemText, styled, Toolbar } from '@mui/material'
+import {Drawer, List, ListItemButton, ListItemText, styled, Toolbar} from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const sideItems = [
-    { id: 1, path: '/', text: 'Home' },
-    { id: 2, path: '/about', text: 'About' }
+    {id: 1, path: '/', text: 'Home'},
+    {id: 2, path: '/about', text: 'About'}
 ]
 
 const Sidebar: React.FC = () => {
@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
             variant="permanent"
             sx={{
                 width: drawerWidth,
-                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' }
+                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'}
             }}
             PaperProps={{
                 elevation: 12,
@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
                 }
             }}
         >
-            <Toolbar />
+            <Toolbar/>
             <List>
                 {sideItems.map((item) =>
                     <ListItemButton sx={{
@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
                             backgroundColor: "#2e8b57!important"
                         }
                     }} key={item.id} component={Link} to={item.path} selected={location.pathname === item.path}>
-                        <StyledListText primary={item.text} />
+                        <StyledListText primary={item.text}/>
                     </ListItemButton>
                 )}
             </List>

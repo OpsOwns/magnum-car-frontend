@@ -4,6 +4,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import Footer from '../components/Footer';
 import {object, string, TypeOf} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 
 const schema = object({
@@ -29,9 +31,53 @@ const Login = () => {
         }
     }, [isSubmitSuccessful, reset]);
 
-    const onSubmit: SubmitHandler<LoginInput> = data => {
+    const onSubmit: SubmitHandler<LoginInput> = async data => {
+        await axios
+            .post("http://localhost:4000/api/login", data)
+            .then(function (response) {
+                if (response.data.success === false) {
+                    toast.error(response.data.error, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        progress: 0,
+                        toastId: "my_toast",
+                    });
+                } else {
+                    toast.success(response.data.message, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: false,
+                        progress: 0,
+                        toastId: "my_toast",
+                    });
+                    localStorage.setItem("auth", response.data.token);
+                }
+            })
+
+            .catch(function (error) {
+                toast.error(error.message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: 0,
+                    toastId: "my_toast",
+                });
+                console.log(error);
+            });
 
     }
+
+
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
